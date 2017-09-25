@@ -13,8 +13,8 @@ import com.walton.android.googleservices.processor.OnBackGroundResult;
  */
 
 public class GoogleData {
-    private final int PICK_ACCOUNT_REQUEST = 1;
-    private final int REQUEST_AUTHENTICATE = 2;
+    private int mPickAccountCode = 1;
+    private int mAuthenticateCode = 2;
     private AccountManager accountManager;
     private Account selectedAccount;
     private Activity activity;
@@ -35,11 +35,17 @@ public class GoogleData {
     public AccountManager getAccountManager(){
         return accountManager;
     }
-    public int getPICK_ACCOUNT_REQUEST(){
-        return PICK_ACCOUNT_REQUEST;
+    public int getPickAccountCode(){
+        return mPickAccountCode;
     }
-    public int getREQUEST_AUTHENTICATE(){
-        return REQUEST_AUTHENTICATE;
+    public int getAuthenticateCode(){
+        return mAuthenticateCode;
+    }
+    public void setPickAccountCode(int code) {
+    	mPickAccountCode= code;
+    }
+    public void setAuthenticateCode(int code) {
+    	mAuthenticateCode = code;
     }
     public Activity getActivity(){
         return activity;

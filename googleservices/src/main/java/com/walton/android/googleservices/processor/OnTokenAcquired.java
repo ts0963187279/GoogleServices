@@ -24,7 +24,7 @@ public class OnTokenAcquired implements AccountManagerCallback<Bundle> {
         activity = googleData.getActivity();
         googleServices = googleData.getService();
         this.asyncTask = asyncTask;
-        REQUEST_AUTHENTICATE = googleData.getREQUEST_AUTHENTICATE();
+        REQUEST_AUTHENTICATE = googleData.getAuthenticateCode();
     }
     @Override
     public void run(AccountManagerFuture<Bundle> result) {

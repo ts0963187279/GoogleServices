@@ -24,8 +24,8 @@ public class ConnectGoogleAccount {
     }
     public void connect(GoogleData googleData){
         Account[] accountList = googleData.getAccountManager().getAccounts();
-        int PICK_ACCOUNT_REQUEST = googleData.getPICK_ACCOUNT_REQUEST();
-        int REQUEST_AUTHENTICATE = googleData.getREQUEST_AUTHENTICATE();
+        int PICK_ACCOUNT_REQUEST = googleData.getPickAccountCode();
+        int REQUEST_AUTHENTICATE = googleData.getAuthenticateCode();
         if(requestCode == PICK_ACCOUNT_REQUEST && resultCode == RESULT_OK) {
             String accountName = data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
             for (Account a : accountList) {
