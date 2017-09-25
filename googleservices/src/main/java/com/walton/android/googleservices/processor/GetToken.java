@@ -1,4 +1,4 @@
-package com.cobwalton.googleservices.processor;
+package com.walton.android.googleservices.processor;
 
 /**
  * Created by waltonmis on 2017/9/19.

@@ -1,4 +1,4 @@
-package com.cobwalton.googleservices.model;
+package com.walton.android.googleservices.model;
 
 
 import com.google.gdata.client.contacts.ContactsService;

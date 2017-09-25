@@ -1,8 +1,8 @@
-package com.cobwalton.googleservices.processor;
+package com.walton.android.googleservices.processor;
 
-import com.cobwalton.googleservices.model.GoogleContactData;
-import com.cobwalton.googleservices.model.GoogleData;
-import com.cobwalton.googleservices.model.GooglePhotosData;
+import com.walton.android.googleservices.model.GoogleContactData;
+import com.walton.android.googleservices.model.GoogleData;
+import com.walton.android.googleservices.model.GooglePhotosData;
 import com.google.gdata.client.GoogleService;
 import com.google.gdata.client.contacts.ContactsService;
 import com.google.gdata.client.photos.PicasawebService;

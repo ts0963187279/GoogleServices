@@ -1,9 +1,9 @@
-package com.cobwalton.googleservices.processor;
+package com.walton.android.googleservices.processor;
 
 import android.accounts.AccountManager;
 
-import com.cobwalton.googleservices.model.GoogleContactData;
-import com.cobwalton.googleservices.model.GoogleData;
+import com.walton.android.googleservices.model.GoogleContactData;
+import com.walton.android.googleservices.model.GoogleData;
 
 
 /**

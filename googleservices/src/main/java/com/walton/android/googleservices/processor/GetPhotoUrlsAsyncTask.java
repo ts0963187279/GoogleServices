@@ -1,10 +1,10 @@
-package com.cobwalton.googleservices.processor;
+package com.walton.android.googleservices.processor;
 
 import android.net.Uri;
 import android.os.AsyncTask;
 
 
-import com.cobwalton.googleservices.model.GooglePhotosData;
+import com.walton.android.googleservices.model.GooglePhotosData;
 import com.google.gdata.client.photos.PicasawebService;
 import com.google.gdata.data.photos.AlbumEntry;
 import com.google.gdata.data.photos.AlbumFeed;

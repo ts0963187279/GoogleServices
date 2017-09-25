@@ -1,4 +1,4 @@
-package com.cobwalton.googleservices.processor;
+package com.walton.android.googleservices.processor;
 
 import android.accounts.AccountManager;
 import android.accounts.AccountManagerCallback;
@@ -8,7 +8,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
-import com.cobwalton.googleservices.model.GoogleData;
+import com.walton.android.googleservices.model.GoogleData;
 
 
 /**

@@ -1,11 +1,11 @@
-package com.cobwalton.googleservices.model;
+package com.walton.android.googleservices.model;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.app.Activity;
 
-import com.cobwalton.googleservices.processor.GoogleServices;
-import com.cobwalton.googleservices.processor.OnBackGroundResult;
+import com.walton.android.googleservices.processor.GoogleServices;
+import com.walton.android.googleservices.processor.OnBackGroundResult;
 
 
 /**

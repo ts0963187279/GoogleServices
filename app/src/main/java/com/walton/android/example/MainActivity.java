@@ -1,13 +1,13 @@
-package com.cobwalton.example;
+package com.walton.android.example;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.cobwalton.googleservices.model.GoogleData;
-import com.cobwalton.googleservices.processor.ConnectGoogleAccount;
-import com.cobwalton.googleservices.processor.GoogleServices;
-import com.cobwalton.googleservices.processor.SelectGoogleAccount;
+import com.walton.android.googleservices.model.GoogleData;
+import com.walton.android.googleservices.processor.ConnectGoogleAccount;
+import com.walton.android.googleservices.processor.GoogleServices;
+import com.walton.android.googleservices.processor.SelectGoogleAccount;
 import com.google.gdata.client.contacts.ContactsService;
 
 public class MainActivity extends AppCompatActivity {
@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(com.cobwalton.example.R.layout.activity_main);
+        setContentView(com.walton.android.example.R.layout.activity_main);
         GoogleServices googleServices = new GoogleServices(new ContactsService("GoogleServices"));
         googleData = googleServices.getGoogleData();
         googleData.setOnBackGroundResult(new ShowContractList());

@@ -1,6 +1,6 @@
-package com.cobwalton.example;
+package com.walton.android.example;
 
-import com.cobwalton.googleservices.processor.OnBackGroundResult;
+import com.walton.android.googleservices.processor.OnBackGroundResult;
 
 import java.util.ArrayList;
 import java.util.TreeMap;

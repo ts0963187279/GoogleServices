@@ -1,4 +1,4 @@
-package com.cobwalton.googleservices.processor;
+package com.walton.android.googleservices.processor;
 
 import java.util.ArrayList;
 import java.util.TreeMap;

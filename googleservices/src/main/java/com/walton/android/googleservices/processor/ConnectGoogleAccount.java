@@ -1,11 +1,11 @@
-package com.cobwalton.googleservices.processor;
+package com.walton.android.googleservices.processor;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.content.Intent;
 
 
-import com.cobwalton.googleservices.model.GoogleData;
+import com.walton.android.googleservices.model.GoogleData;
 
 import static android.app.Activity.RESULT_OK;
 

@@ -1,8 +1,8 @@
-package com.cobwalton.googleservices.processor;
+package com.walton.android.googleservices.processor;
 
 import android.os.AsyncTask;
 
-import com.cobwalton.googleservices.model.GoogleContactData;
+import com.walton.android.googleservices.model.GoogleContactData;
 import com.google.gdata.client.contacts.ContactsService;
 import com.google.gdata.data.contacts.ContactEntry;
 import com.google.gdata.data.contacts.ContactFeed;
