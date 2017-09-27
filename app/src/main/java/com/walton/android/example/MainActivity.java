@@ -9,6 +9,7 @@ import com.walton.android.googleservices.processor.ConnectGoogleAccount;
 import com.walton.android.googleservices.processor.GoogleServices;
 import com.walton.android.googleservices.processor.SelectGoogleAccount;
 import com.google.gdata.client.contacts.ContactsService;
+import com.google.gdata.client.photos.PicasawebService;
 
 public class MainActivity extends AppCompatActivity {
     GoogleData googleData;
@@ -16,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(com.walton.android.example.R.layout.activity_main);
-        GoogleServices googleServices = new GoogleServices(new ContactsService("GoogleServices"));
+        GoogleServices googleServices = new GoogleServices(new PicasawebService("GoogleServices"));
         googleData = googleServices.getGoogleData();
         googleData.setOnBackGroundResult(new ShowContractList());
         SelectGoogleAccount selectGoogleAccount = new SelectGoogleAccount(googleData,this);

@@ -17,33 +17,32 @@ import java.net.URL;
  */
 
 public class GetContactAsyncTask extends AsyncTask<Void,Void,Void> {
-    private GoogleContactData googleContactData;
-    private ContactsService contactsService;
-    public GetContactAsyncTask(GoogleContactData googleContactData){
-        this.googleContactData = googleContactData;
-        contactsService = googleContactData.getContactsService();
-    }
-    public <T extends ContactFeed> T getFeed(String feedHref, Class<T> feedClass) throws IOException, ServiceException {
-        return contactsService.getFeed(new URL(feedHref), feedClass);
-    }
-    @Override
-    protected Void doInBackground(Void... voids) {
-        try {
-            ContactFeed contactFeed = getFeed(googleContactData.getApiPrefix(),ContactFeed.class);
-            System.out.println(contactFeed.getTitle().getPlainText());
-            for(ContactEntry entry : contactFeed.getEntries()){
-                if(entry.hasName()){
-                    System.out.println(entry.getTitle().getPlainText());
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ServiceException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-    protected void onPostExecute(Void test)
-    {
-    }
+	private GoogleContactData googleContactData;
+	private ContactsService contactsService;
+	public GetContactAsyncTask(GoogleContactData googleContactData){
+		this.googleContactData = googleContactData;
+		contactsService = googleContactData.getContactsService();
+	}
+	public <T extends ContactFeed> T getFeed(String feedHref, Class<T> feedClass) throws IOException, ServiceException {
+		return contactsService.getFeed(new URL(feedHref), feedClass);
+	}
+	@Override
+	protected Void doInBackground(Void... voids) {
+		try {
+			ContactFeed contactFeed = getFeed(googleContactData.getApiPrefix(),ContactFeed.class);
+			System.out.println(contactFeed.getTitle().getPlainText());
+			for(ContactEntry entry : contactFeed.getEntries()){
+				if(entry.hasName()){
+					System.out.println(entry.getTitle().getPlainText());
+				}
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ServiceException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	protected void onPostExecute(Void test) {
+	}
 }

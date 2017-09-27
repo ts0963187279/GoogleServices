@@ -13,5 +13,6 @@ public class ShowContractList implements OnBackGroundResult{
     @Override
     public void doIt(TreeMap<String, ArrayList<String>> strTreeMap) {
         System.out.println("test");
+	System.out.println(strTreeMap);
     }
 }

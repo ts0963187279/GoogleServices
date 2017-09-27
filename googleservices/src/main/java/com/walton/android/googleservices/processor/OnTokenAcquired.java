@@ -22,9 +22,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-
 import com.walton.android.googleservices.model.GoogleData;
-
 
 /**
  * Created by waltonmis on 2017/8/29.
@@ -49,8 +47,8 @@ public class OnTokenAcquired implements AccountManagerCallback<Bundle> {
 			Bundle bundle = result.getResult();
 			if(bundle.containsKey(AccountManager.KEY_INTENT)){
 				Intent intent = bundle.getParcelable(AccountManager.KEY_INTENT);
-				int flags = intent.getFlags();
-				intent.setFlags(flags);
+//				int flags = intent.getFlags();
+//				intent.setFlags(flags);
 				activity.startActivityForResult(intent, REQUEST_AUTHENTICATE);
 				return;
 			}
