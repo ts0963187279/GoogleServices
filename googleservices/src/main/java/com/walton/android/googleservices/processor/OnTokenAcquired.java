@@ -47,8 +47,6 @@ public class OnTokenAcquired implements AccountManagerCallback<Bundle> {
 			Bundle bundle = result.getResult();
 			if(bundle.containsKey(AccountManager.KEY_INTENT)){
 				Intent intent = bundle.getParcelable(AccountManager.KEY_INTENT);
-//				int flags = intent.getFlags();
-//				intent.setFlags(flags);
 				activity.startActivityForResult(intent, REQUEST_AUTHENTICATE);
 				return;
 			}

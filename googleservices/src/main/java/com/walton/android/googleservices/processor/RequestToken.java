@@ -34,7 +34,7 @@ public class RequestToken implements Mission<RequestToken.Parameter> {
 	@Override
 	public Void execute(RequestToken.Parameter parameter) {
 		AccountManager manager = (AccountManager) parameter.mActivity.getSystemService(Context.ACCOUNT_SERVICE);
-		manager.getAuthToken(parameter.mAccount, "cp", null, parameter.mActivity, new TokenHandler(parameter), null);
+		manager.getAuthToken(parameter.mAccount, parameter.mTokenType, null, parameter.mActivity, new TokenHandler(parameter), null);
 		return null;
 	}
 
@@ -70,15 +70,18 @@ public class RequestToken implements Mission<RequestToken.Parameter> {
 	public static class Parameter {
 		private Activity mActivity;
 		private Account mAccount;
+		private String mTokenType;
 		private int mRequestCode;
 		private Mission<String> mHandler;
 
 		/**
 		 * Constructor
+		 * @param tokenType example: "cp", "lh2". Reference site: https://wtanaka.com/node/8045
 		 */
-		public Parameter(Activity activity, Account account, int requestCode, Mission<String> handler) {
+		public Parameter(Activity activity, Account account, String tokenType, int requestCode, Mission<String> handler) {
 			mActivity = activity;
 			mAccount = account;
+			mTokenType = tokenType;
 			mRequestCode = requestCode;
 			mHandler = handler;
 		}

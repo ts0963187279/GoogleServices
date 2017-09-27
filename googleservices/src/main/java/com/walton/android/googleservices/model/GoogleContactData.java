@@ -2,18 +2,22 @@ package com.walton.android.googleservices.model;
 
 
 import com.google.gdata.client.contacts.ContactsService;
+import com.walton.android.googleservices.mission.GetContactEntrys;
 
 /**
  * Created by waltonmis on 2017/9/19.
  */
 
 public class GoogleContactData extends GoogleData {
-    private static final String API_PREFIX
-            = "https://www.google.com/m8/feeds/contacts/default/full";
-    public String getApiPrefix(){
-        return API_PREFIX;
-    }
-    public ContactsService getContactsService(){
-        return (ContactsService)this.getService().getGoogleService();
-    }
+
+	/**
+	 * https://developers.google.com/identity/protocols/googlescopes
+	 */
+	public String getApiPrefix(){
+		return GetContactEntrys.getApiPrefix();
+	}
+
+	public ContactsService getContactsService(){
+		return (ContactsService)this.getService().getGoogleService();
+	}
 }
