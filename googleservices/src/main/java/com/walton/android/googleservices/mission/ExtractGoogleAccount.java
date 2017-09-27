@@ -13,31 +13,37 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.walton.android.googleservices.processor;
+package com.walton.android.googleservices.mission;
 
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
-import com.google.android.gms.common.AccountPicker;
 import poisondog.core.Mission;
 
 /**
  * @author Adam Huang
  * @since 2017-09-27
  */
-public class RequestGoogleAccount implements Mission<Integer> {
-	private Activity mActivity;
+public class ExtractGoogleAccount implements Mission<Intent> {
+	private AccountManager mManager;
 
 	/**
 	 * Constructor
 	 */
-	public RequestGoogleAccount(Activity activity) {
-		mActivity = activity;
+	public ExtractGoogleAccount(Activity activity) {
+		mManager = (AccountManager) activity.getSystemService(Context.ACCOUNT_SERVICE);
 	}
 
 	@Override
-	public Void execute(Integer requestCode) {
-		Intent intent = AccountPicker.newChooseAccountIntent(null,null,new String[]{"com.google"},false,null,null,null,null);
-		mActivity.startActivityForResult(intent, requestCode);
+	public Account execute(Intent data) {
+		String accountName = data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
+		for (Account a : mManager.getAccounts()) {
+			if (a.name.equals(accountName)) {
+				return a;
+			}
+		}
 		return null;
 	}
 }

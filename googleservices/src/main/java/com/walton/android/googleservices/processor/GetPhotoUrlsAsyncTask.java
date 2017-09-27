@@ -25,6 +25,7 @@ public class GetPhotoUrlsAsyncTask extends AsyncTask<Void,Void,Void> {
 	}
 	@Override
 	protected Void doInBackground(Void... voids) {
+		strTreeMap = new TreeMap<String, List<String>>();
 		try{
 			strTreeMap = mTask.execute(googlePhotosData.getPicasawebService());
 		}catch(ServiceForbiddenException e){
@@ -34,7 +35,7 @@ public class GetPhotoUrlsAsyncTask extends AsyncTask<Void,Void,Void> {
 		}catch(ServiceException e){
 			e.printStackTrace();
 		}
-		return new TreeMap<String, List<String>>();
+		return null;
 	}
 
 	protected void onPostExecute(Void test) {

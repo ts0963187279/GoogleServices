@@ -1,9 +1,8 @@
 package com.walton.android.googleservices.processor;
 
-import android.accounts.Account;
-import android.accounts.AccountManager;
 import android.app.Activity;
 import android.content.Intent;
+import com.walton.android.googleservices.mission.ExtractGoogleAccount;
 import com.walton.android.googleservices.model.GoogleData;
 
 /**
