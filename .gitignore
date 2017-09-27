@@ -1,3 +1,6 @@
+# vim temp files
+*.swp
+*.swo
 # Built application files
 *.apk
 *.ap_
