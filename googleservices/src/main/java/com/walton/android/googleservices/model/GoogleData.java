@@ -4,13 +4,11 @@ import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.app.Activity;
 import android.content.Context;
-import com.walton.android.googleservices.processor.GoogleServices;
-import com.walton.android.googleservices.processor.GetToken;
-import java.util.Map;
+import com.google.gdata.client.GoogleService;
 import java.util.List;
+import java.util.Map;
 import poisondog.core.Mission;
 import poisondog.core.NoMission;
-import com.google.gdata.client.GoogleService;
 
 /**
  * Created by waltonmis on 2017/9/19.
@@ -23,14 +21,14 @@ public class GoogleData {
 	private Account selectedAccount;
 	private Activity activity;
 	private GoogleService googleService;
-	private Mission<Map<String, List<String>>> mHandler;
+//	private Mission<Map<String, List<String>>> mHandler;
 	private Mission<GoogleData> getToken;
 
 	/**
 	 * Constructor
 	 */
 	public GoogleData() {
-		mHandler = new NoMission<Map<String, List<String>>>();
+//		mHandler = new NoMission<Map<String, List<String>>>();
 	}
 
 	public void setActivity(Activity activity){
@@ -61,12 +59,12 @@ public class GoogleData {
 	public Activity getActivity(){
 		return activity;
 	}
-	public void setHandler(Mission<Map<String, List<String>>> handler) {
-		mHandler = handler;
-	}
-	public Mission<Map<String, List<String>>> getHandler() {
-		return mHandler;
-	}
+//	private void setHandler(Mission<Map<String, List<String>>> handler) {
+//		mHandler = handler;
+//	}
+//	private Mission<Map<String, List<String>>> getHandler() {
+//		return mHandler;
+//	}
 	public void setService(GoogleService service) {
 		googleService = service;
 	}

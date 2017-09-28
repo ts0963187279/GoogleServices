@@ -16,10 +16,10 @@ public class MainActivity extends AppCompatActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(com.walton.android.example.R.layout.activity_main);
-//		GoogleServices googleServices = new GoogleServices(new ContactsService("GoogleServices"));
-		GoogleServices googleServices = new GoogleServices(new PicasawebService("GoogleServices"));
+		GoogleServices googleServices = new GoogleServices(new ContactsService("GoogleServices"));
+//		GoogleServices googleServices = new GoogleServices(new PicasawebService("GoogleServices"));
 		googleData = googleServices.getGoogleData();
-		googleData.setHandler(new ShowContractList());
+//		googleData.setHandler(new ShowContractList());
 		SelectGoogleAccount selectGoogleAccount = new SelectGoogleAccount(googleData,this);
 		selectGoogleAccount.select();
 	}

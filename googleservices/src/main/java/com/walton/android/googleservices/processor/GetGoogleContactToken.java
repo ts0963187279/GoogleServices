@@ -1,8 +1,13 @@
 package com.walton.android.googleservices.processor;
 
 import android.accounts.Account;
+import com.google.gdata.client.contacts.ContactsService;
+import com.google.gdata.data.contacts.ContactEntry;
+import com.google.gdata.util.ServiceException;
+import com.walton.android.googleservices.mission.GetContactEntrys;
 import com.walton.android.googleservices.mission.RequestToken;
 import com.walton.android.googleservices.model.GoogleData;
+import java.io.IOException;
 import poisondog.core.Mission;
 
 /**
@@ -10,11 +15,6 @@ import poisondog.core.Mission;
  */
 
 public class GetGoogleContactToken implements Mission<GoogleData> {
-	private GoogleData contactData;
-
-	public GetGoogleContactToken(GoogleData googleData){
-		this.contactData = googleData;
-	}
 
 	@Override
 	public Void execute(final GoogleData data) {
@@ -25,8 +25,25 @@ public class GetGoogleContactToken implements Mission<GoogleData> {
 			@Override
 			public Void execute(String token) {
 				data.getService().setUserToken(token);
-				GetContactAsyncTask task = new GetContactAsyncTask(data);
-				task.execute();
+
+				Thread t = new Thread(new Runnable() {
+					@Override
+					public void run() {
+						try {
+							for(ContactEntry entry : new GetContactEntrys().execute((ContactsService)data.getService())){
+								if(entry.hasName()){
+									System.out.println("name: " + entry.getTitle().getPlainText());
+								}
+							}
+						} catch (IOException e) {
+							e.printStackTrace();
+						} catch (ServiceException e) {
+							e.printStackTrace();
+						}
+					}
+				});
+				t.start();
+
 				return null;
 			}
 		}));

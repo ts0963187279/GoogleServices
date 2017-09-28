@@ -1,8 +1,12 @@
 package com.walton.android.googleservices.processor;
 
 import android.accounts.Account;
+import com.google.gdata.client.photos.PicasawebService;
+import com.walton.android.googleservices.mission.GetPhotoMap;
 import com.walton.android.googleservices.mission.RequestToken;
 import com.walton.android.googleservices.model.GoogleData;
+import java.util.List;
+import java.util.Map;
 import poisondog.core.Mission;
 
 /**
@@ -10,11 +14,6 @@ import poisondog.core.Mission;
  */
 
 public class GetGooglePhotosToken implements Mission<GoogleData> {
-	private GoogleData googlePhotosData;
-
-	public GetGooglePhotosToken(GoogleData googleData){
-		this.googlePhotosData = googleData;
-	}
 
 	@Override
 	public Void execute(final GoogleData data) {
@@ -25,8 +24,26 @@ public class GetGooglePhotosToken implements Mission<GoogleData> {
 			@Override
 			public Void execute(String token) {
 				data.getService().setUserToken(token);
-				GetPhotoUrlsAsyncTask task = new GetPhotoUrlsAsyncTask(data);
-				task.execute();
+
+				Thread t = new Thread(new Runnable() {
+					@Override
+					public void run() {
+						try {
+							GetPhotoMap mTask = new GetPhotoMap(data.getSelectedAccount().name);
+							Map<String, List<String>> strTreeMap = mTask.execute((PicasawebService)data.getService());
+							for (String key : strTreeMap.keySet()) {
+								System.out.println("=====" + key + "=====");
+								for (String obj : strTreeMap.get(key)) {
+									System.out.println(obj);
+								}
+							}
+						} catch(Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+				t.start();
+
 				return null;
 			}
 		}));

@@ -16,13 +16,13 @@ public class GoogleServices {
 		googleService = picasawebService;
 		googleData = new GoogleData();
 		googleData.setService(googleService);
-		googleData.setTokenHandler(new GetGooglePhotosToken(googleData));
+		googleData.setTokenHandler(new GetGooglePhotosToken());
 	}
 	public GoogleServices(ContactsService contactsService){
 		googleService = contactsService;
 		googleData = new GoogleData();
 		googleData.setService(googleService);
-		googleData.setTokenHandler(new GetGoogleContactToken(googleData));
+		googleData.setTokenHandler(new GetGoogleContactToken());
 	}
 	public GoogleData getGoogleData(){
 		return googleData;
