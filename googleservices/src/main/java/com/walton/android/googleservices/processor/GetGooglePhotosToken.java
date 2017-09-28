@@ -9,15 +9,11 @@ import poisondog.core.Mission;
  * Created by waltonmis on 2017/9/19.
  */
 
-public class GetGooglePhotosToken implements GetToken, Mission<GoogleData> {
+public class GetGooglePhotosToken implements Mission<GoogleData> {
 	private GoogleData googlePhotosData;
 
 	public GetGooglePhotosToken(GoogleData googleData){
 		this.googlePhotosData = googleData;
-	}
-	@Override
-	public void getToken() {
-		execute(googlePhotosData);
 	}
 
 	@Override

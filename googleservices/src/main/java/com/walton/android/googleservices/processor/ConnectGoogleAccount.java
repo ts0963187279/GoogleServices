@@ -34,10 +34,18 @@ public class ConnectGoogleAccount {
 	private void pickAccount(GoogleData googleData) {
 		ExtractGoogleAccount task = new ExtractGoogleAccount(googleData.getActivity());
 		googleData.setSelectedAccount(task.execute(data));
-		googleData.getGoogleToken();
+		try {
+			googleData.executeTokenHandler(googleData);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	private void requestToken(GoogleData googleData) {
-		googleData.getGoogleToken();
+		try {
+			googleData.executeTokenHandler(googleData);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

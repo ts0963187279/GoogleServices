@@ -24,12 +24,6 @@ public class GoogleServices {
 		googleData.setService(googleService);
 		googleData.setTokenHandler(new GetGoogleContactToken(googleData));
 	}
-	public void setUserToken(String token){
-		googleService.setUserToken(token);
-	}
-	public GoogleService getGoogleService(){
-		return googleService;
-	}
 	public GoogleData getGoogleData(){
 		return googleData;
 	}

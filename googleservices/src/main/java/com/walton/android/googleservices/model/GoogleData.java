@@ -24,7 +24,7 @@ public class GoogleData {
 	private Activity activity;
 	private GoogleService googleService;
 	private Mission<Map<String, List<String>>> mHandler;
-	private GetToken getToken;
+	private Mission<GoogleData> getToken;
 
 	/**
 	 * Constructor
@@ -73,10 +73,10 @@ public class GoogleData {
 	public GoogleService getService() {
 		return googleService;
 	}
-	public void setTokenHandler(GetToken handler) {
+	public void setTokenHandler(Mission<GoogleData> handler) {
 		getToken = handler;
 	}
-	public void getGoogleToken(){
-		getToken.getToken();
+	public void executeTokenHandler(GoogleData data) throws Exception {
+		getToken.execute(data);
 	}
 }

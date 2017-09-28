@@ -9,16 +9,11 @@ import poisondog.core.Mission;
  * Created by waltonmis on 2017/9/19.
  */
 
-public class GetGoogleContactToken implements GetToken, Mission<GoogleData> {
+public class GetGoogleContactToken implements Mission<GoogleData> {
 	private GoogleData contactData;
 
 	public GetGoogleContactToken(GoogleData googleData){
 		this.contactData = googleData;
-	}
-
-	@Override
-	public void getToken() {
-		execute(contactData);
 	}
 
 	@Override
