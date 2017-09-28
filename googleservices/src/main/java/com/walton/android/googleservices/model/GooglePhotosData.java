@@ -9,13 +9,6 @@ import com.walton.android.googleservices.mission.GetPhotoMap;
 
 public class GooglePhotosData extends GoogleData {
 
-	/**
-	 * https://developers.google.com/identity/protocols/googlescopes
-	 */
-	public String getApiPrefix() {
-		return GetPhotoMap.getApiPrefix();
-	}
-
 	public PicasawebService getPicasawebService(){
 		return (PicasawebService)this.getService().getGoogleService();
 	}

@@ -10,13 +10,6 @@ import com.walton.android.googleservices.mission.GetContactEntrys;
 
 public class GoogleContactData extends GoogleData {
 
-	/**
-	 * https://developers.google.com/identity/protocols/googlescopes
-	 */
-	public String getApiPrefix(){
-		return GetContactEntrys.getApiPrefix();
-	}
-
 	public ContactsService getContactsService(){
 		return (ContactsService)this.getService().getGoogleService();
 	}
