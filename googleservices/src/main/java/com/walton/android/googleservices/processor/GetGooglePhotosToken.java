@@ -1,7 +1,6 @@
 package com.walton.android.googleservices.processor;
 
 import android.accounts.Account;
-import android.accounts.AccountManager;
 import com.walton.android.googleservices.mission.RequestToken;
 import com.walton.android.googleservices.model.GoogleData;
 import com.walton.android.googleservices.model.GooglePhotosData;
@@ -18,16 +17,6 @@ public class GetGooglePhotosToken implements GetToken {
 	}
 	@Override
 	public void getToken() {
-//		AccountManager am = googlePhotosData.getAccountManager();
-//		OnTokenAcquired onTokenAcquired = new OnTokenAcquired(googlePhotosData,new GetPhotoUrlsAsyncTask(googlePhotosData));
-//		am.getAuthToken(
-//				googlePhotosData.getSelectedAccount(),
-//				"lh2",
-//				null,
-//				googlePhotosData.getActivity(),
-//				onTokenAcquired,
-//				null);
-
 		Account account = googlePhotosData.getSelectedAccount();
 		int requestCode = googlePhotosData.getAuthenticateCode();
 		RequestToken mRequest = new RequestToken();

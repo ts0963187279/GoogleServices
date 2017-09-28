@@ -9,7 +9,6 @@ import com.walton.android.googleservices.model.GoogleData;
 import com.walton.android.googleservices.processor.ConnectGoogleAccount;
 import com.walton.android.googleservices.processor.GoogleServices;
 import com.walton.android.googleservices.processor.SelectGoogleAccount;
-import com.walton.android.googleservices.mission.GetPhotoMap;
 
 public class MainActivity extends AppCompatActivity {
 	GoogleData googleData;
