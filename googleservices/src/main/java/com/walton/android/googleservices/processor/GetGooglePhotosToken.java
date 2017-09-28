@@ -3,31 +3,38 @@ package com.walton.android.googleservices.processor;
 import android.accounts.Account;
 import com.walton.android.googleservices.mission.RequestToken;
 import com.walton.android.googleservices.model.GoogleData;
-import com.walton.android.googleservices.model.GooglePhotosData;
 import poisondog.core.Mission;
 
 /**
  * Created by waltonmis on 2017/9/19.
  */
 
-public class GetGooglePhotosToken implements GetToken {
-	private GooglePhotosData googlePhotosData;
+public class GetGooglePhotosToken implements GetToken, Mission<GoogleData> {
+	private GoogleData googlePhotosData;
+
 	public GetGooglePhotosToken(GoogleData googleData){
-		this.googlePhotosData = (GooglePhotosData)googleData;
+		this.googlePhotosData = googleData;
 	}
 	@Override
 	public void getToken() {
-		Account account = googlePhotosData.getSelectedAccount();
-		int requestCode = googlePhotosData.getAuthenticateCode();
+		execute(googlePhotosData);
+	}
+
+	@Override
+	public Void execute(final GoogleData data) {
+		Account account = data.getSelectedAccount();
+		int requestCode = data.getAuthenticateCode();
 		RequestToken mRequest = new RequestToken();
-		mRequest.execute(new RequestToken.Parameter(googlePhotosData.getActivity(), account, "lh2", requestCode, new Mission<String>() {
+		mRequest.execute(new RequestToken.Parameter(data.getActivity(), account, "lh2", requestCode, new Mission<String>() {
 			@Override
 			public Void execute(String token) {
-				googlePhotosData.getService().setUserToken(token);
-				GetPhotoUrlsAsyncTask task = new GetPhotoUrlsAsyncTask(googlePhotosData);
+				data.getService().setUserToken(token);
+				GetPhotoUrlsAsyncTask task = new GetPhotoUrlsAsyncTask(data);
 				task.execute();
 				return null;
 			}
 		}));
+		return null;
 	}
+
 }

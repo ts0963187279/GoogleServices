@@ -5,8 +5,8 @@ import com.google.gdata.client.contacts.ContactsService;
 import com.google.gdata.data.contacts.ContactEntry;
 import com.google.gdata.data.contacts.ContactFeed;
 import com.google.gdata.util.ServiceException;
-import com.walton.android.googleservices.model.GoogleContactData;
 import com.walton.android.googleservices.mission.GetContactEntrys;
+import com.walton.android.googleservices.model.GoogleData;
 import java.io.IOException;
 import java.net.URL;
 
@@ -15,11 +15,9 @@ import java.net.URL;
  */
 
 public class GetContactAsyncTask extends AsyncTask<Void,Void,Void> {
-	private GoogleContactData googleContactData;
 	private ContactsService contactsService;
-	public GetContactAsyncTask(GoogleContactData googleContactData){
-		this.googleContactData = googleContactData;
-		contactsService = googleContactData.getContactsService();
+	public GetContactAsyncTask(GoogleData googleContactData){
+		contactsService = (ContactsService)googleContactData.getService();
 	}
 
 	public <T extends ContactFeed> T getFeed(String feedHref, Class<T> feedClass) throws IOException, ServiceException {

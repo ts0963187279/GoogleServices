@@ -1,10 +1,11 @@
 package com.walton.android.googleservices.processor;
 
 import android.os.AsyncTask;
+import com.google.gdata.client.photos.PicasawebService;
 import com.google.gdata.util.ServiceException;
 import com.google.gdata.util.ServiceForbiddenException;
 import com.walton.android.googleservices.mission.GetPhotoMap;
-import com.walton.android.googleservices.model.GooglePhotosData;
+import com.walton.android.googleservices.model.GoogleData;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -15,19 +16,19 @@ import java.util.TreeMap;
  */
 
 public class GetPhotoUrlsAsyncTask extends AsyncTask<Void,Void,Void> {
-	private GooglePhotosData googlePhotosData;
+	private GoogleData mData;
 	private Map<String, List<String>> strTreeMap;
 	private GetPhotoMap mTask;
 
-	public GetPhotoUrlsAsyncTask(GooglePhotosData googlePhotosData){
-		this.googlePhotosData = googlePhotosData;
+	public GetPhotoUrlsAsyncTask(GoogleData googlePhotosData){
+		mData = googlePhotosData;
 		mTask = new GetPhotoMap(googlePhotosData.getSelectedAccount().name);
 	}
 	@Override
 	protected Void doInBackground(Void... voids) {
 		strTreeMap = new TreeMap<String, List<String>>();
 		try{
-			strTreeMap = mTask.execute(googlePhotosData.getPicasawebService());
+			strTreeMap = mTask.execute((PicasawebService)mData.getService());
 		}catch(ServiceForbiddenException e){
 			e.printStackTrace();
 		}catch(IOException e){
@@ -40,6 +41,11 @@ public class GetPhotoUrlsAsyncTask extends AsyncTask<Void,Void,Void> {
 
 	protected void onPostExecute(Void test) {
 		System.out.println("onPostExecute " + strTreeMap.size());
-		googlePhotosData.onBackGroundResult().doIt(strTreeMap);
+//		mData.onBackGroundResult().doIt(strTreeMap);
+		try {
+			mData.getHandler().execute(strTreeMap);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

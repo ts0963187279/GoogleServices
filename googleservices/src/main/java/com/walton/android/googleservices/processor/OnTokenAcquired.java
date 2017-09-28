@@ -22,6 +22,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import com.google.gdata.client.GoogleService;
 import com.walton.android.googleservices.model.GoogleData;
 
 /**
@@ -31,7 +32,7 @@ import com.walton.android.googleservices.model.GoogleData;
 public class OnTokenAcquired implements AccountManagerCallback<Bundle> {
 	private Activity activity;
 	private final int REQUEST_AUTHENTICATE;
-	private GoogleServices googleServices;
+	private GoogleService googleServices;
 	private AsyncTask<Void,Void,Void> asyncTask;
 
 	public OnTokenAcquired(GoogleData googleData, AsyncTask<Void,Void,Void> asyncTask) {

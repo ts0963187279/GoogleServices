@@ -5,7 +5,12 @@ import android.accounts.AccountManager;
 import android.app.Activity;
 import android.content.Context;
 import com.walton.android.googleservices.processor.GoogleServices;
-import com.walton.android.googleservices.processor.OnBackGroundResult;
+import com.walton.android.googleservices.processor.GetToken;
+import java.util.Map;
+import java.util.List;
+import poisondog.core.Mission;
+import poisondog.core.NoMission;
+import com.google.gdata.client.GoogleService;
 
 /**
  * Created by waltonmis on 2017/9/19.
@@ -17,8 +22,17 @@ public class GoogleData {
 	private AccountManager accountManager;
 	private Account selectedAccount;
 	private Activity activity;
-	private OnBackGroundResult onBackGroundResult;
-	private GoogleServices googleServices;
+	private GoogleService googleService;
+	private Mission<Map<String, List<String>>> mHandler;
+	private GetToken getToken;
+
+	/**
+	 * Constructor
+	 */
+	public GoogleData() {
+		mHandler = new NoMission<Map<String, List<String>>>();
+	}
+
 	public void setActivity(Activity activity){
 		this.activity = activity;
 		this.accountManager = (AccountManager) activity.getSystemService(Context.ACCOUNT_SERVICE);
@@ -26,9 +40,6 @@ public class GoogleData {
 	public void setSelectedAccount(Account selectedAccount){
 		this.selectedAccount = selectedAccount;
 	}
-//	public void setAccountManager(AccountManager accountManager){
-//		this.accountManager = accountManager;
-//	}
 	public Account getSelectedAccount(){
 		return selectedAccount;
 	}
@@ -50,16 +61,22 @@ public class GoogleData {
 	public Activity getActivity(){
 		return activity;
 	}
-	public void setOnBackGroundResult(OnBackGroundResult onBackGroundResult){
-		this.onBackGroundResult = onBackGroundResult;
+	public void setHandler(Mission<Map<String, List<String>>> handler) {
+		mHandler = handler;
 	}
-	public OnBackGroundResult onBackGroundResult(){
-		return onBackGroundResult;
+	public Mission<Map<String, List<String>>> getHandler() {
+		return mHandler;
 	}
-	public void setService(GoogleServices service){
-		this.googleServices = service;
+	public void setService(GoogleService service) {
+		googleService = service;
 	}
-	public GoogleServices getService(){
-		return googleServices;
+	public GoogleService getService() {
+		return googleService;
+	}
+	public void setTokenHandler(GetToken handler) {
+		getToken = handler;
+	}
+	public void getGoogleToken(){
+		getToken.getToken();
 	}
 }
