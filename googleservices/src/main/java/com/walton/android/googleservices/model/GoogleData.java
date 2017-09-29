@@ -16,8 +16,6 @@ import poisondog.core.Mission;
  */
 
 public class GoogleData {
-	private int mPickAccountCode = 1;
-	private int mAuthenticateCode = 2;
 	private Activity mActivity;
 	private AccountManager mManager;
 	private Account mAccount;
@@ -58,18 +56,6 @@ public class GoogleData {
 	public AccountManager getAccountManager(){
 		return mManager;
 	}
-	public int getPickAccountCode(){
-		return mPickAccountCode;
-	}
-	public int getAuthenticateCode(){
-		return mAuthenticateCode;
-	}
-	public void setPickAccountCode(int code) {
-		mPickAccountCode= code;
-	}
-	public void setAuthenticateCode(int code) {
-		mAuthenticateCode = code;
-	}
 	public Activity getActivity(){
 		return mActivity;
 	}
@@ -79,10 +65,10 @@ public class GoogleData {
 	public GoogleService getService() {
 		return mService;
 	}
-	public void setTokenHandler(Mission<GoogleData> handler) {
+	public void setHandler(Mission<GoogleData> handler) {
 		mHandler = new TokenHandlerWrapper(handler);
 	}
-	public void executeTokenHandler(int requestCode) throws Exception {
+	public void requestToken(int requestCode) throws Exception {
 		mHandler.execute(new TokenHandlerWrapper.Parameter(requestCode, this));
 	}
 	private void setTokenType(String type) {

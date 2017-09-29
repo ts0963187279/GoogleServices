@@ -11,6 +11,8 @@ import com.walton.android.googleservices.mission.RequestGoogleAccount;
 import com.walton.android.googleservices.model.GoogleData;
 
 public class MainActivity extends AppCompatActivity {
+	private final int PICK_ACCOUNT_REQUEST = 1;
+	private final int REQUEST_AUTHENTICATE = 2;
 	private GoogleData googleData;
 
 	@Override
@@ -19,19 +21,17 @@ public class MainActivity extends AppCompatActivity {
 		setContentView(com.walton.android.example.R.layout.activity_main);
 
 //		googleData = GoogleData.getInstance(new ContactsService("GoogleServices"));
-//		googleData.setTokenHandler(new ShowContacts());
+//		googleData.setHandler(new ShowContacts());
 		googleData = GoogleData.getInstance(new PicasawebService("GoogleServices"));
-		googleData.setTokenHandler(new ShowPhotos());
+		googleData.setHandler(new ShowPhotos());
 
 		googleData.setActivity(this);
 
 		RequestGoogleAccount request = new RequestGoogleAccount(this);
-		request.execute(googleData.getPickAccountCode());
+		request.execute(PICK_ACCOUNT_REQUEST);
 	}
 
 	protected void onActivityResult(final int requestCode,final int resultCode,final Intent data){
-		int PICK_ACCOUNT_REQUEST = googleData.getPickAccountCode();
-		int REQUEST_AUTHENTICATE = googleData.getAuthenticateCode();
 		if(requestCode == PICK_ACCOUNT_REQUEST && resultCode == Activity.RESULT_OK) {
 			ExtractGoogleAccount task = new ExtractGoogleAccount(googleData.getActivity());
 			googleData.setSelectedAccount(task.execute(data));
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
 	private void requestToken(GoogleData googleData) {
 		try {
-			googleData.executeTokenHandler(googleData.getAuthenticateCode());
+			googleData.requestToken(REQUEST_AUTHENTICATE);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

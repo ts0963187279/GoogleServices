@@ -39,7 +39,11 @@ public class TokenHandlerWrapper implements Mission<TokenHandlerWrapper.Paramete
 	public Void execute(TokenHandlerWrapper.Parameter parameter) {
 		final GoogleData data = parameter.mData;
 		Activity activity = data.getActivity();
+		if (activity == null)
+			throw new IllegalArgumentException("GoogleData has null Activity !!");
 		Account account = data.getSelectedAccount();
+		if (account == null)
+			throw new IllegalArgumentException("GoogleData has null Account !!");
 		String tokenType = data.getTokenType();
 		int requestCode = parameter.mRequestCode;
 		RequestToken mRequest = new RequestToken();
