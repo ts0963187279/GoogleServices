@@ -1,4 +1,5 @@
 /*
+ * Copyright (C) 2017 RS Wong <ts0963187279@gmail.com>
  * Copyright (C) 2017 Adam Huang <poisondog@gmail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
