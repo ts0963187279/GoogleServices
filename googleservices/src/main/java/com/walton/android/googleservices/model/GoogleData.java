@@ -4,8 +4,11 @@ import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.app.Activity;
 import android.content.Context;
+import com.google.gdata.client.contacts.ContactsService;
 import com.google.gdata.client.GoogleService;
+import com.google.gdata.client.photos.PicasawebService;
 import com.walton.android.googleservices.mission.TokenHandlerWrapper;
+import com.walton.android.googleservices.model.GoogleData;
 import poisondog.core.Mission;
 
 /**
@@ -20,7 +23,27 @@ public class GoogleData {
 	private Account mAccount;
 	private GoogleService mService;
 	private String mTokenType;
-	private Mission<GoogleData> mHandler;
+	private Mission<TokenHandlerWrapper.Parameter> mHandler;
+
+	/**
+	 * Constructor
+	 */
+	private GoogleData() {
+	}
+
+	public static GoogleData getInstance(PicasawebService service) {
+		GoogleData instance = new GoogleData();
+		instance.setService(service);
+		instance.setTokenType("lh2");
+		return instance;
+	}
+
+	public static GoogleData getInstance(ContactsService service) {
+		GoogleData instance = new GoogleData();
+		instance.setService(service);
+		instance.setTokenType("cp");
+		return instance;
+	}
 
 	public void setActivity(Activity activity){
 		mActivity = activity;
@@ -50,7 +73,7 @@ public class GoogleData {
 	public Activity getActivity(){
 		return mActivity;
 	}
-	public void setService(GoogleService service) {
+	private void setService(GoogleService service) {
 		mService = service;
 	}
 	public GoogleService getService() {
@@ -59,10 +82,10 @@ public class GoogleData {
 	public void setTokenHandler(Mission<GoogleData> handler) {
 		mHandler = new TokenHandlerWrapper(handler);
 	}
-	public void executeTokenHandler(GoogleData data) throws Exception {
-		mHandler.execute(data);
+	public void executeTokenHandler(int requestCode) throws Exception {
+		mHandler.execute(new TokenHandlerWrapper.Parameter(requestCode, this));
 	}
-	public void setTokenType(String type) {
+	private void setTokenType(String type) {
 		mTokenType = type;
 	}
 	public String getTokenType() {

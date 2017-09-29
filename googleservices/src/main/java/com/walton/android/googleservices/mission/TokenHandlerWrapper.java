@@ -25,7 +25,7 @@ import poisondog.core.Mission;
  * Created by waltonmis on 2017/9/19.
  */
 
-public class TokenHandlerWrapper implements Mission<GoogleData> {
+public class TokenHandlerWrapper implements Mission<TokenHandlerWrapper.Parameter> {
 	private Mission<GoogleData> mHandler;
 
 	/**
@@ -36,11 +36,12 @@ public class TokenHandlerWrapper implements Mission<GoogleData> {
 	}
 
 	@Override
-	public Void execute(final GoogleData data) {
+	public Void execute(TokenHandlerWrapper.Parameter parameter) {
+		final GoogleData data = parameter.mData;
 		Activity activity = data.getActivity();
 		Account account = data.getSelectedAccount();
 		String tokenType = data.getTokenType();
-		int requestCode = data.getAuthenticateCode();
+		int requestCode = parameter.mRequestCode;
 		RequestToken mRequest = new RequestToken();
 		mRequest.execute(new RequestToken.Parameter(activity, account, tokenType, requestCode, new Mission<String>() {
 			@Override
@@ -51,6 +52,19 @@ public class TokenHandlerWrapper implements Mission<GoogleData> {
 			}
 		}));
 		return null;
+	}
+
+	public static class Parameter {
+		private int mRequestCode;
+		private GoogleData mData;
+
+		/**
+		 * Constructor
+		 */
+		public Parameter(int requestCode, GoogleData data) {
+			mRequestCode = requestCode;
+			mData = data;
+		}
 	}
 
 }
