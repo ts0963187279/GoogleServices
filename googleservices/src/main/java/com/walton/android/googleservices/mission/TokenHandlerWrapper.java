@@ -18,8 +18,8 @@ package com.walton.android.googleservices.mission;
 
 import android.accounts.Account;
 import android.app.Activity;
-import com.walton.android.googleservices.mission.RequestToken;
-import com.walton.android.googleservices.model.GoogleData;
+
+import com.walton.android.googleservices.module.GoogleData;
 import poisondog.core.Mission;
 
 /**

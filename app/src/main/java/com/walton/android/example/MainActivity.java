@@ -20,11 +20,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import com.google.gdata.client.contacts.ContactsService;
+
 import com.google.gdata.client.photos.PicasawebService;
 import com.walton.android.googleservices.mission.ExtractGoogleAccount;
 import com.walton.android.googleservices.mission.RequestGoogleAccount;
-import com.walton.android.googleservices.model.GoogleData;
+import com.walton.android.googleservices.module.GoogleData;
 
 public class MainActivity extends AppCompatActivity {
 	private final int PICK_ACCOUNT_REQUEST = 1;

@@ -17,8 +17,11 @@
 package com.walton.android.example;
 
 import com.google.gdata.client.photos.PicasawebService;
-import com.walton.android.googleservices.mission.GetPhotoMap;
-import com.walton.android.googleservices.model.GoogleData;
+import com.walton.android.googleservices.mission.GetAlbumInfo;
+import com.walton.android.googleservices.module.AlbumInfo;
+import com.walton.android.googleservices.module.GoogleData;
+import com.walton.android.googleservices.module.PhotoInfo;
+
 import java.util.List;
 import java.util.Map;
 import poisondog.core.Mission;
@@ -35,12 +38,12 @@ public class ShowPhotos implements Mission<GoogleData> {
 			@Override
 			public void run() {
 				try {
-					GetPhotoMap mTask = new GetPhotoMap(data.getSelectedAccount().name);
-					Map<String, List<String>> strTreeMap = mTask.execute((PicasawebService)data.getService());
-					for (String key : strTreeMap.keySet()) {
-						System.out.println("=====" + key + "=====");
-						for (String obj : strTreeMap.get(key)) {
-							System.out.println(obj);
+					GetAlbumInfo mTask = new GetAlbumInfo(data.getSelectedAccount().name);
+					List<AlbumInfo> albumInfos = mTask.execute((PicasawebService)data.getService());
+					for (AlbumInfo albumInfo : albumInfos) {
+						System.out.println("=====" + albumInfo.getAlbumName() + "=====");
+						for (PhotoInfo photoInfo : albumInfo.getPhotoInfos()) {
+							System.out.println(photoInfo.getPhotoName());
 						}
 					}
 				} catch(Exception e) {

@@ -24,7 +24,11 @@ import com.google.gdata.data.photos.GphotoEntry;
 import com.google.gdata.data.photos.GphotoFeed;
 import com.google.gdata.data.photos.PhotoEntry;
 import com.google.gdata.data.photos.UserFeed;
+import com.google.gdata.util.ResourceNotFoundException;
 import com.google.gdata.util.ServiceException;
+import com.walton.android.googleservices.module.AlbumInfo;
+
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -37,13 +41,13 @@ import poisondog.core.Mission;
  * @author Adam Huang
  * @since 2017-09-27
  */
-public class GetPhotoMap implements Mission<PicasawebService> {
+public class GetAlbumInfo implements Mission<PicasawebService> {
 	private String mAccount;
 
 	/**
 	 * Constructor
 	 */
-	public GetPhotoMap(String account) {
+	public GetAlbumInfo(String account) {
 		mAccount = account;
 	}
 
@@ -81,17 +85,31 @@ public class GetPhotoMap implements Mission<PicasawebService> {
 	}
 
 	@Override
-	public Map<String, List<String>> execute(PicasawebService service) throws IOException, ServiceException {
-		TreeMap<String, List<String>> strTreeMap = new TreeMap<>();
-		for(AlbumEntry mAlbum : getAlbums(service, mAccount)){
-			List<PhotoEntry> mPhotos = getPhoto(mAlbum);
-			ArrayList<String> imageUrls = new ArrayList<>();
-			for(PhotoEntry mPhoto : mPhotos) {
-				imageUrls.add(Uri.parse(mPhoto.getMediaContents().get(0).getUrl()).toString());
+	public List<AlbumInfo> execute(PicasawebService picasawebService) throws IOException, ServiceException {
+		List<AlbumInfo> albumInfos = new ArrayList<AlbumInfo>();
+		List<AlbumEntry> albumEntries = null;
+		try {
+			albumEntries = getAlbums(picasawebService,mAccount);
+			for(AlbumEntry albumEntry : albumEntries){
+				AlbumInfo albumInfo = new AlbumInfo();
+				String albumId = "";
+				for(int i = albumEntry.getId().indexOf("albumid")+8;i < albumEntry.getId().length();i++)
+					albumId += albumEntry.getId().charAt(i);
+				albumInfo.setAlbumId(albumId);
+				albumInfo.setAlbumName(albumEntry.getTitle().getPlainText().toString());
+				List<PhotoEntry> photoEntries = getPhoto(albumEntry);
+				for(PhotoEntry photoEntry: photoEntries){
+					String fileName = photoEntry.getTitle().getPlainText().toString();
+					URL url = new URL(photoEntry.getMediaContents().get(0).getUrl().toString());
+					albumInfo.addPhotoNameAndPhotoURL(fileName,url);
+				}
+				albumInfos.add(albumInfo);
 			}
-			if(!imageUrls.isEmpty())
-				strTreeMap.put(mAlbum.getTitle().getPlainText().toString(), imageUrls);
+		} catch (ResourceNotFoundException e) {
+			System.out.println("User Name invalid");
+			File file = new File("./RefreshTokenStorage.dat");
+			file.delete();
 		}
-		return strTreeMap;
+		return albumInfos;
 	}
 }

@@ -19,7 +19,7 @@ package com.walton.android.example;
 import com.google.gdata.client.contacts.ContactsService;
 import com.google.gdata.data.contacts.ContactEntry;
 import com.walton.android.googleservices.mission.GetContactEntrys;
-import com.walton.android.googleservices.model.GoogleData;
+import com.walton.android.googleservices.module.GoogleData;
 import poisondog.core.Mission;
 
 

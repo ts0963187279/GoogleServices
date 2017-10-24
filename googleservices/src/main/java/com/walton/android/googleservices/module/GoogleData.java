@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.walton.android.googleservices.model;
+package com.walton.android.googleservices.module;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
@@ -24,7 +24,7 @@ import com.google.gdata.client.contacts.ContactsService;
 import com.google.gdata.client.GoogleService;
 import com.google.gdata.client.photos.PicasawebService;
 import com.walton.android.googleservices.mission.TokenHandlerWrapper;
-import com.walton.android.googleservices.model.GoogleData;
+
 import poisondog.core.Mission;
 
 /**
