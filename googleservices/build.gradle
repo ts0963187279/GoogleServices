@@ -31,7 +31,7 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
 	compile group: 'poisondog', name: 'poisondog.core', version: '1.0.5'
-    compile 'com.android.support:appcompat-v7:26.+'
+    compile 'com.android.support:appcompat-v7:25.+'
     compile 'com.google.android.gms:play-services:3.1.36'
     compile 'com.google.gdata:core:1.47.1'
 }
